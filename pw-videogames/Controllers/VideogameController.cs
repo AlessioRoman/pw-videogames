@@ -11,9 +11,9 @@ namespace pw_videogames.Controllers
         {
             using (VideogameContext db = new VideogameContext())
             {
-                List<VideogameModel> videogames = db.Videogames.ToList();
+                List<VideogameModel> videogame = db.Videogames.ToList();
 
-                return View(videogames);
+                return View(videogame);
             }
         }
 
@@ -23,6 +23,7 @@ namespace pw_videogames.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(VideogameModel newVideogame)
         {
@@ -41,6 +42,7 @@ namespace pw_videogames.Controllers
             }
         }
 
+        // ACTION UPDATE
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -49,7 +51,7 @@ namespace pw_videogames.Controllers
                 VideogameModel? videogameToEdit = context.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault(); 
                 if (videogameToEdit == null)
                 {
-                    return NotFound("Il videogame che cerchi non esiste!");
+                    return NotFound("Il videogioco che cerchi non esiste!");
                 } else
                 {
                     return View("Update", videogameToEdit);
@@ -85,6 +87,7 @@ namespace pw_videogames.Controllers
             }
         }
 
+        // ACTION DELETE
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -101,7 +104,7 @@ namespace pw_videogames.Controllers
                 }
                 else
                 {
-                    return NotFound("Videogame non trovato");
+                    return NotFound("Videogioco non trovato");
                 }
             }
         }
