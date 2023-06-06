@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "";
 }
+
+@model VideogameModel
+
+<div class="container">
+    <h2 class="mb-3">Aggiungi videogioco</h2>
+    <form asp-controller="Videogame" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Nome</label>
+            <input asp-for="Name" type="text" class="form-control" required>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Descrizione</label>
+            <input asp-for="Description" type="text" class="form-control" required>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImgUrl" class="form-label">URL Immagine</label>
+            <input asp-for="ImgUrl" type="text" class="form-control" required>
+            <span asp-validation-for="ImgUrl" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Prezzo</label>
+            <input asp-for="Price" type="text" class="form-control" required>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary bg-redText">Salva</button>
+    </form>
