@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using pw_videogames.Database;
 using pw_videogames.Models;
 
@@ -40,7 +41,49 @@ namespace pw_videogames.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            using (VideogameContext context = new VideogameContext())
+            {
+                VideogameModel? videogameToEdit = context.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault(); 
+                if (videogameToEdit == null)
+                {
+                    return NotFound("Il videogame che cerchi non esiste!");
+                } else
+                {
+                    return View("Update", videogameToEdit);
+                }
+            } 
 
+        }
+
+        [HttpPost]
+        public IActionResult Update(int id, VideogameModel videogameUpdated)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View("Update", videogameUpdated);
+            } else
+            {
+                using (VideogameContext db = new VideogameContext())
+                {
+                    VideogameModel? videogameToUpdate = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
+                    if(videogameToUpdate == null)
+                    {
+                        return NotFound();
+                    } else
+                    {
+                        videogameToUpdate.Name = videogameUpdated.Name;
+                        videogameToUpdate.ImgUrl = videogameUpdated.ImgUrl;
+                        videogameToUpdate.Price = videogameUpdated.Price;
+                        videogameToUpdate.Description = videogameUpdated.Description;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+        }
     }
 
 }
