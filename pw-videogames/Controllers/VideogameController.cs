@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using pw_videogames.Database;
+using pw_videogames.Models;
 
 namespace pw_videogames.Controllers
 {
@@ -8,7 +10,7 @@ namespace pw_videogames.Controllers
         {
             using (VideogameContext db = new VideogameContext())
             {
-                List<VideogameModel> videogame = db.Videogame.ToList();
+                List<VideogameModel> videogame = db.Videogames.ToList();
 
                 return View(videogame);
             }
@@ -31,7 +33,7 @@ namespace pw_videogames.Controllers
             {
                 using (VideogameContext db = new VideogameContext())
                 {
-                    db.Books.Add(newVideogame);
+                    db.Videogames.Add(newVideogame);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -40,5 +42,3 @@ namespace pw_videogames.Controllers
     }
 
 }
-
-
