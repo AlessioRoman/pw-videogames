@@ -10,9 +10,9 @@ namespace pw_videogames.Controllers
         {
             using (VideogameContext db = new VideogameContext())
             {
-                List<VideogameModel> videogame = db.Videogames.ToList();
+                List<VideogameModel> videogames = db.Videogames.ToList();
 
-                return View(videogame);
+                return View(videogames);
             }
         }
 
