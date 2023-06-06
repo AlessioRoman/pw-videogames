@@ -1,1 +1,30 @@
-﻿
+﻿@model List<VideogameModel>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h3>Lista dei videogiochi</h3>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12">
+                    @foreach(VideogameModel videogame in Model)
+                    {
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                            <img src="@videogame.ImgUrl" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@videogame.Name</h5>
+                                        <p class="card-text">@videogame.Description</p>
+                                        <p class="card-text">Prezzo: @videogame.Price.ToString("0.00")</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+        </div>
+    </div>
+</div>
