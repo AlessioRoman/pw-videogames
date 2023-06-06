@@ -84,6 +84,26 @@ namespace pw_videogames.Controllers
                 }
             }
         }
-    }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            using (VideogameContext db = new VideogameContext())
+            {
+                VideogameModel? gameToDelete = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
+
+                if (gameToDelete != null)
+                {
+                    db.Remove(gameToDelete);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return NotFound("Videogame non trovato");
+                }
+            }
+        }
+    }
 }
