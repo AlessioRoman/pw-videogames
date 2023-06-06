@@ -6,7 +6,11 @@ namespace pw_videogames.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            using (VideogameContext db = new VideogameContext())
+            {
+                List<Videogame> vgList = db.Videogame.ToList();
+                return View(vgList);
+            }
         }
     }
 }
