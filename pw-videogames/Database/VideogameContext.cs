@@ -8,6 +8,7 @@ namespace pw_videogames.Database
     public class VideogameContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<VideogameModel> Videogames { get; set; }
+        public DbSet<TransactionModel> Transactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
