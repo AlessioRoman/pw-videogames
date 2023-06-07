@@ -15,5 +15,20 @@ namespace pw_videogames.Controllers
                 return View(videogame);
             }
         }
+
+        public IActionResult Details(int id)
+        {
+            using(VideogameContext db = new VideogameContext())
+            {
+                VideogameModel? videogameDetails = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
+                if(videogameDetails != null)
+                {
+                    return View("Details", videogameDetails);
+                } else
+                {
+                    return NotFound($"Il videogioco con id {id} non è stato trovato!");
+                }
+            }
+        }
     }
 }
