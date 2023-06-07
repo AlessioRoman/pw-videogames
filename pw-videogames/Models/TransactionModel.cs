@@ -9,13 +9,5 @@
         public VideogameModel Videogame { get; set; }
 
         public TransactionModel() { }
-
-        public TransactionModel(int id, DateTime date, int quantity)
-        {
-            Id = id;
-            Date = date;
-            Quantity = quantity;
-            Videogame = new VideogameModel();
-        }
     }
 }
