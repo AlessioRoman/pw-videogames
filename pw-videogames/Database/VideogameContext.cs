@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using pw_videogames.Models;
 
 namespace pw_videogames.Database
 {
-    public class VideogameContext : DbContext
+    public class VideogameContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<VideogameModel> Videogames { get; set; }
 
