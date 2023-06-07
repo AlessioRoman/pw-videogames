@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<VideogameModel>
+
+<table class="table table-striped mx-5">
+    <thead>
+        <tr>
+            <th scope="col">Immagine</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Deacrizione</th>
+            <th scope="col">Prezzo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VideogameModel videogame in Model)
+        {
+            <tr>
+                <td><img class="img-fluid img_square" style="width: 15rem;" src="@videogame.ImgUrl" alt=""></td>
+                <td>@videogame.Name</td>
+                <td>@videogame.Description</td>
+                <td>@videogame.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
