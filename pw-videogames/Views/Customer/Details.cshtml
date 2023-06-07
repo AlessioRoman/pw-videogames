@@ -1,0 +1,15 @@
+﻿@model VideogameModel
+
+
+<div class="container bg-warning-subtle shadow-lg rounded border-black mt-5 p-0" style="width: 50%; font-family: 'Dancing Script' , cursive;">
+    
+    <img src="@Model.ImgUrl" class="card-img-top" alt="Immagine @Model.Name">
+    
+    <div class="p-3">
+        <h1><strong>@Model.Name</strong></h1>
+        <p>@Model.Description</p>
+        <h2><strong>@Model.Price €</strong></h2>    
+        <button class="btn btn-success m-1">&#xF242 Aquista</button>
+    </div>
+
+</div>
