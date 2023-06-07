@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pw_videogames.Database;
 
@@ -11,9 +12,11 @@ using pw_videogames.Database;
 namespace pw_videogames.Migrations
 {
     [DbContext(typeof(VideogameContext))]
-    partial class VideogameContextModelSnapshot : ModelSnapshot
+    [Migration("20230607085432_Transaction")]
+    partial class Transaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,30 +223,6 @@ namespace pw_videogames.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("pw_videogames.Models.TransactionModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("VideogameId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VideogameId");
-
-                    b.ToTable("Transactions");
-                });
-
             modelBuilder.Entity("pw_videogames.Models.VideogameModel", b =>
                 {
                     b.Property<int>("Id")
@@ -321,15 +300,6 @@ namespace pw_videogames.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("pw_videogames.Models.TransactionModel", b =>
-                {
-                    b.HasOne("pw_videogames.Models.VideogameModel", "Videogame")
-                        .WithMany()
-                        .HasForeignKey("VideogameId");
-
-                    b.Navigation("Videogame");
                 });
 #pragma warning restore 612, 618
         }
