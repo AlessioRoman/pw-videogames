@@ -18,6 +18,10 @@
                 <td>@videogame.Description</td>
                 <td>@videogame.Price</td>
             </tr>
+            <form asp-controller="Manage" asp-action="Delete" asp-route-id="@videogame.Id" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" style="height: 2.5rem;" class="btn btn-primary bg-redText">Delete</button>
+            </form>
         }
     </tbody>
 </table>
