@@ -5,17 +5,10 @@ using pw_videogames.Models;
 
 namespace pw_videogames.Controllers
 {
-    public class VideogameController : Controller
+    public class ManageController : Controller
     {
-        public IActionResult Index()
-        {
-            using (VideogameContext db = new VideogameContext())
-            {
-                List<VideogameModel> videogame = db.Videogames.ToList();
+        public IActionResult Index() { return View(); }
 
-                return View(videogame);
-            }
-        }
 
         // ACTION CREATE
         [HttpGet]
