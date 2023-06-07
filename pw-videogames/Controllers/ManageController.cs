@@ -7,7 +7,16 @@ namespace pw_videogames.Controllers
 {
     public class ManageController : Controller
     {
-        public IActionResult Index() { return View(); }
+        public IActionResult Index()
+        {
+            using (VideogameContext db = new VideogameContext())
+            {
+                List<VideogameModel> videogame = db.Videogames.ToList();
+
+                return View(videogame);
+            }
+        }
+
 
 
         // ACTION CREATE
