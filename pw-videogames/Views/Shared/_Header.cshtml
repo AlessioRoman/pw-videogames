@@ -12,22 +12,20 @@
                         <a class="nav-link active text-light" aria-current="page" href="@Url.Action("Index", "Home")">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="@Url.Action("Index","Videogame")">Catalogo</a>
+                        <a class="nav-link text-light" href="@Url.Action("Index","Customer")">Catalogo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="@Url.Action("Create","Videogame")">Aggiungi Videogioco</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Su di noi
+                            Account
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Chi siamo</a></li>
-                            <li><a class="dropdown-item" href="#">I nostri prodotti</a></li>
-                            <li><a class="dropdown-item" href="#">Contattaci!</a></li>
+                        <ul class="dropdown-menu p-1">
+                            <partial name="_LoginPartial" />
                         </ul>
                     </li>
-                    <partial name="_LoginPartial" />
+                    
                 </ul>
             </div>
         </div>
