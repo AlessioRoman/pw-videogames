@@ -1,1 +1,24 @@
 ﻿@model TransactionModel
+
+<div class="container">
+    <h2 class="mb-3">Aggiungi videogioco</h2>
+    <form asp-controller="Customer" asp-action="Buy" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label asp-for="@Model.Videogame.Name" class="form-label">Titolo</label>
+            <input asp-for="@Model.Videogame.Name" type="text" class="form-control" required>
+            <span asp-validation-for="@Model.Videogame.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Quantity" class="form-label">Nome</label>
+            <input asp-for="@Model.Quantity" type="number" class="form-control" required>
+            <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Videogame.Price" class="form-label">Prezzo</label>
+            <input asp-for="@Model.Videogame.Price" type="text" class="form-control" required>
+            <span asp-validation-for="@Model.Videogame.Price" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary bg-redText">Salva</button>
+    </form>
+</div>

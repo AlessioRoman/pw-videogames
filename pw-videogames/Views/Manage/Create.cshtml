@@ -6,7 +6,7 @@
 
 <div class="container">
     <h2 class="mb-3">Aggiungi videogioco</h2>
-    <form asp-controller="Videogame" asp-action="Create" method="post">
+    <form asp-controller="Manage" asp-action="Create" method="post">
         @Html.AntiForgeryToken()
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Nome</label>

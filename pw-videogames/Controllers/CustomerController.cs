@@ -32,18 +32,35 @@ namespace pw_videogames.Controllers
             }
         }
 
+        public IActionResult Buy(int id)
+        {
+            using (VideogameContext db = new VideogameContext())
+            {
+                TransactionModel newTransaction = new();
+                newTransaction.Videogame = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
+                if (newTransaction.Videogame != null)
+                {
+                    return View("Buy", newTransaction);
+                }
+                else
+                {
+                    return NotFound($"Il videogioco con id {id} non è stato trovato!");
+                }
+            }
+        }
+
         [HttpPost]
-        public IActionResult Transaction(int id, int quantity) 
+        public IActionResult Buy(int id, TransactionModel data) 
         {
             using (VideogameContext db = new VideogameContext())
             {
                 VideogameModel? videogameToBuy = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
                 if (videogameToBuy != null)
                 {
-                    TransactionModel newTransaction = new TransactionModel();
+                    TransactionModel newTransaction = new();
                     newTransaction.Videogame = videogameToBuy;
+                    newTransaction.Quantity = data.Quantity;
                     newTransaction.Date = DateTime.Now;
-                    newTransaction.Quantity = quantity;
                     db.Add(newTransaction);
                     db.SaveChanges();
 
