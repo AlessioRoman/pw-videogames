@@ -1,7 +1,7 @@
 ﻿@model TransactionModel
 
 <div class="container">
-    <h2 class="mb-3">Aggiungi videogioco</h2>
+    <h2 class="mb-3">Completa l'acquisto</h2>
     <form asp-controller="Customer" asp-action="Buy" method="post">
         @Html.AntiForgeryToken()
         <div class="mb-3">
@@ -11,7 +11,7 @@
         </div>
         <div class="mb-3">
             <label asp-for="@Model.Quantity" class="form-label">Quantità</label>
-            <input asp-for="@Model.Quantity" type="number" value="1" class="form-control" required>
+            <input asp-for="@(Model.Quantity)" type="number" value="1" class="form-control" required>
             <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
         </div>
         <div class="mb-3">
@@ -19,6 +19,6 @@
             <input asp-for="@Model.Videogame.Price" type="text" class="form-control" required>
             <span asp-validation-for="@(Model.Videogame.Price).ToString(" {0:0.00}")" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary bg-redText">Salva</button>
+        <button type="submit" class="btn btn-primary bg-redText" @Url.Action("Confirm", "Customer")>Acuista</button>
     </form>
 </div>

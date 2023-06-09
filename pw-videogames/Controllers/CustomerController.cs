@@ -17,6 +17,11 @@ namespace pw_videogames.Controllers
             }
         }
 
+        public IActionResult Confirm()
+        {
+            return View();
+        }
+
         public IActionResult Details(int id)
         {
             using(VideogameContext db = new VideogameContext())
@@ -54,14 +59,14 @@ namespace pw_videogames.Controllers
         {
             using (VideogameContext db = new VideogameContext())
             {
-                    TransactionModel newTransaction = new();
-                    newTransaction.Videogame = db.Videogames.Where(videogame => videogame.Name.Contains(data.Videogame.Name)).FirstOrDefault(); ;
-                    newTransaction.Quantity = data.Quantity;
-                    newTransaction.Date = DateTime.Now;
-                    db.Add(newTransaction);
-                    db.SaveChanges();
+                TransactionModel newTransaction = new();
+                newTransaction.Videogame = db.Videogames.Where(videogame => videogame.Name.Contains(data.Videogame.Name)).FirstOrDefault();
+                newTransaction.Quantity = data.Quantity;
+                newTransaction.Date = DateTime.Now;
+                db.Add(newTransaction);
+                db.SaveChanges();
 
-                    return View("Index");
+                return RedirectToAction("Confirm");
             }
         }
     }
