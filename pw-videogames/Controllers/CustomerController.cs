@@ -17,6 +17,11 @@ namespace pw_videogames.Controllers
             }
         }
 
+        public IActionResult Confirm()
+        {
+            return View();
+        }
+
         public IActionResult Details(int id)
         {
             using(VideogameContext db = new VideogameContext())
@@ -61,7 +66,7 @@ namespace pw_videogames.Controllers
                 db.Add(newTransaction);
                 db.SaveChanges();
 
-                return RedirectToAction("Confirm", newTransaction);
+                return RedirectToAction("Confirm");
             }
         }
     }
