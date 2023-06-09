@@ -38,12 +38,12 @@ namespace pw_videogames.Controllers.Api
             }
         }
 
-        [HttpGet]
-        public IActionResult SearchByTitle(string Key)
+        [HttpGet("{key}")]
+        public IActionResult SearchByTitle(string key)
         {
             using (VideogameContext db = new VideogameContext())
             {
-                VideogameModel videogameToSearch = db.Videogames.Where(videogame => videogame.Name.Contains(Key)).FirstOrDefault();
+                VideogameModel videogameToSearch = db.Videogames.Where(videogame => videogame.Name.Contains(key)).FirstOrDefault();
                 if (videogameToSearch == null)
                 {
                     return NotFound("Il videogame richiesto non esiste!");
@@ -51,6 +51,25 @@ namespace pw_videogames.Controllers.Api
                 else
                 {
                     return Ok(videogameToSearch);
+                }
+            }
+        }
+        
+        [HttpPut("{id}")]
+        public IActionResult AddLike(int id)
+        {
+            using(VideogameContext db = new VideogameContext())
+            {
+                VideogameModel videogame = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
+                if (videogame == null)
+                {
+                    return NotFound();
+                } else
+                {
+                    videogame.Like = videogame.Like + 1;
+                    db.SaveChanges();
+
+                    return Ok();
                 }
             }
         }

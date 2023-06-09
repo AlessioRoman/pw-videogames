@@ -19,15 +19,18 @@ namespace pw_videogames.Models
 
         public float Price { get; set; }
 
+        public int Like { get; set; }
+
         public VideogameModel() { }
 
-        public VideogameModel(int id, string name, string description, string imgUrl, float price)
+        public VideogameModel(int id, string name, string description, string imgUrl, float price, int like)
         {
             Id = id;
             Name = name;
             Description = description;
             ImgUrl = imgUrl;
             Price = price;
+            Like = like;
         }
     }
 }
