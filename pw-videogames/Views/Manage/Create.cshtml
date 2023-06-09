@@ -32,6 +32,12 @@
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
 
+        <div class="mb-3">
+            <label asp-for="Like" class="form-label">Like</label>
+            <input asp-for="Like" type="number" class="form-control rounded" required>
+            <span asp-validation-for="Like" class="text-danger"></span>
+        </div>
+
         <button type="submit" class="btn btn-primary bg-redText">Salva</button>
 
     </form>

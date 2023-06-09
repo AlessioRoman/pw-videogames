@@ -5,7 +5,7 @@ namespace pw_videogames.Models
 {
     public class VideogameModel
     {
-        [MaxLength(50)]
+      
         public int Id {  get; set; }
         
         [MaxLength(400)]
@@ -19,11 +19,11 @@ namespace pw_videogames.Models
 
         public float Price { get; set; }
 
-        public int Like { get; set; }
+        public int? Like { get; set; }
 
         public VideogameModel() { }
 
-        public VideogameModel(int id, string name, string description, string imgUrl, float price, int like)
+        public VideogameModel(int id, string name, string description, string imgUrl, float price, int? like)
         {
             Id = id;
             Name = name;

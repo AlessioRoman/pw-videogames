@@ -63,38 +63,43 @@ namespace pw_videogames.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Update(int id, VideogameModel videogameUpdated)
-        {
+        { 
             if(!ModelState.IsValid)
             {
                 return View("Update", videogameUpdated);
-            } else
+            }
+            
+            using (VideogameContext db = new VideogameContext())
             {
-                using (VideogameContext db = new VideogameContext())
+                VideogameModel? videogameToUpdate = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
+                if(videogameToUpdate == null)
                 {
-                    VideogameModel? videogameToUpdate = db.Videogames.Where(videogame => videogame.Id == id).FirstOrDefault();
-                    if(videogameToUpdate == null)
-                    {
-                        return NotFound();
-                    } else
-                    {
-                        videogameToUpdate.Name = videogameUpdated.Name;
-                        videogameToUpdate.ImgUrl = videogameUpdated.ImgUrl;
-                        videogameToUpdate.Price = videogameUpdated.Price;
-                        videogameToUpdate.Description = videogameUpdated.Description;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
+                    return NotFound();
+                } else
+                {
+                    videogameToUpdate.Name = videogameUpdated.Name;
+                    videogameToUpdate.ImgUrl = videogameUpdated.ImgUrl;
+                    videogameToUpdate.Price = videogameUpdated.Price;
+                    videogameToUpdate.Description = videogameUpdated.Description;
+                    videogameToUpdate.Like = videogameUpdated.Like;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
             }
+            
         }
-
+        
+        // ACTION DELETE
+        
+        [HttpGet]
         public IActionResult Delete()
         {
             return View();
         }
 
-        // ACTION DELETE
+        
         [HttpPost]
         public IActionResult Delete(int id)
         {
