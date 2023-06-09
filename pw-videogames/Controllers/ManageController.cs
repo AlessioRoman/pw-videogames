@@ -89,6 +89,11 @@ namespace pw_videogames.Controllers
             }
         }
 
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
         // ACTION DELETE
         [HttpPost]
         public IActionResult Delete(int id)
